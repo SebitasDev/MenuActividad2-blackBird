@@ -1,8 +1,10 @@
+using FluentValidation;
 using menuActividd2.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,9 @@ builder.Services.AddDbContext<MenuContext>(options =>
         ServerVersion.Parse("8.0.20-mysql")
     )
 );
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>(); //Se agregan todas las validaciones que configuremos en el program
+builder.Services.AddFluentValidationAutoValidation(); //Las validaciones que hacemos arriba las aplicamos de manera automatica
 
 builder.Services.AddControllers();
 

@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using menuActividd2.Data;
+using menuActividd2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,15 @@ public class ExampleController : ControllerBase
                 x => x.Usuario
             ).ToListAsync()
         );
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Example2([FromBody] Usuario usuario)
+    {
+        await _context.Usuarios.AddAsync(usuario);
+        await _context.SaveChangesAsync();
+
+        return Ok();
     }
 
 }

@@ -8,8 +8,8 @@ namespace menuActividd2.Models;
 public class Producto
 {
     public Guid? Id { get; set; } = new Guid();
-    public required string Nombre { get; set; }
-    public required string Descripcion { get; set; }
+    public string Nombre { get; set; }
+    public string Descripcion { get; set; }
     public double Precio { get; set; }
     
     [JsonIgnore]

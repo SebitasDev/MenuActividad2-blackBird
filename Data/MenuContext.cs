@@ -23,8 +23,10 @@ public class MenuContext : DbContext
         modelBuilder.Entity<Usuario>() // configurando la entidad Usuario
             .HasMany(e => e.Ordenes) //La entidad usuarios tiene una relacion de uno a muchos con orden
             .WithOne(e => e.Usuario) //Orden esta relacionada con un unico usuario
+            .OnDelete(DeleteBehavior.Cascade)
             .HasForeignKey(e => e.UsuarioId) //la propiedad en la entidad orden es una FK que referencia a Usuario
             .HasPrincipalKey(e => e.Id); //Indica que la propiedas en Usuario es la PK
+            
 
         modelBuilder.Entity<OrdenProducto>() //Configuracion de la relacion uno a muchos
             .HasKey(e => new //Clave compuesta
@@ -36,11 +38,13 @@ public class MenuContext : DbContext
         modelBuilder.Entity<Orden>()
             .HasMany(e => e.OrdenProductos)
             .WithOne(e => e.Orden)
+            .OnDelete(DeleteBehavior.Cascade)
             .HasForeignKey(e => e.OrdenId);
 
         modelBuilder.Entity<Producto>()
             .HasMany(e => e.OrdenProductos)
             .WithOne(e => e.Producto)
+            .OnDelete(DeleteBehavior.Cascade)
             .HasForeignKey(e => e.ProductoId);
 
     }
