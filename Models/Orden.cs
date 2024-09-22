@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace menuActividd2.Models;
 
 public class Orden
